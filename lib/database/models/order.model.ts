@@ -37,9 +37,9 @@ const OrderSchema = new Schema({
   totalAmount: {
     type: String,
   },
-  event: {
+  learner: {
     type: Schema.Types.ObjectId,
-    ref: 'Event',
+    ref: 'Learner',
   },
   buyer: {
     type: Schema.Types.ObjectId,
