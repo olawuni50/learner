@@ -14,45 +14,45 @@ export const authOptions: NextAuthOptions = {
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
           }),
-          CredentialsProvider({
-            name: 'email and password',
-            credentials: {
-                email: {
-                    label: "Email",
-                    placeholder:'email@email.com',
-                    type:'email'
-                },
-                userName: {
-                    label: "User Name",
-                    placeholder:'user name',
-                    type:'string'
-                },
-                password:{
-                    label:'Password',
-                    placeholder:'Enter password',
-                    type:'password'
-                }
-            },
+        //   CredentialsProvider({
+        //     name: 'email and password',
+        //     credentials: {
+        //         email: {
+        //             label: "Email",
+        //             placeholder:'email@email.com',
+        //             type:'email'
+        //         },
+        //         userName: {
+        //             label: "User Name",
+        //             placeholder:'user name',
+        //             type:'string'
+        //         },
+        //         password:{
+        //             label:'Password',
+        //             placeholder:'Enter password',
+        //             type:'password'
+        //         }
+        //     },
 
-            async authorize(credentials, req){
-                if(!credentials?.email || !credentials?.password){
-                    throw new Error("Please provide valid credentials")
-                }
+        //     async authorize(credentials, req){
+        //         if(!credentials?.email || !credentials?.password){
+        //             throw new Error("Please provide valid credentials")
+        //         }
 
-                const client = await MongoClient.connect(process.env.MONGODB_URI as string)
+        //         const client = await MongoClient.connect(process.env.MONGODB_URI as string)
 
-                const db = client.db();
-                const user = await db.collection('users').findOne({email:credentials.email})
+        //         const db = client.db();
+        //         const user = await db.collection('users').findOne({email:credentials.email})
 
-                if(user) {
-                    return user as any;
-                }else {
-                    return null;
-                }
+        //         if(user) {
+        //             return user as any;
+        //         }else {
+        //             return null;
+        //         }
 
-            }
+        //     }
 
-          })
+        //   })
     ],
     session: {
         strategy: 'jwt',
